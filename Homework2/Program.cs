@@ -13,3 +13,5 @@ if (number > 99 && number < 1000)
 else
     Console.WriteLine("A number is NOT three-digit");
 
+//Task 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+
