@@ -51,4 +51,29 @@ Palindrom(array);
 */
 
 // Задача 21. Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+/*
+double Distance3D(int x1, int y1, int z1, int x2, int y2, int z2)
+{
+    double res = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2) + Math.Pow(z2 - z1, 2));
+    return Math.Round(res, 2);
+}
+
+Console.Write("Input first X coordinat: ");
+int x1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input first Y coordinat: ");
+int y1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input first Z coordinat: ");
+int z1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input second X coordinat: ");
+int x2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input second Y coordinat: ");
+int y2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Input second Z coordinat: ");
+int z2 = Convert.ToInt32(Console.ReadLine());
+
+double distance = Distance3D(x1, y1, z1, x2, y2, z2);
+Console.WriteLine($"Distance = {distance}");
+*/
+
+// Задача 23. Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
 
