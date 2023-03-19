@@ -13,18 +13,36 @@
 
 // Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
 
-int DigitsSum(int num)
+// int DigitsSum(int num)
+// {
+//     int sum = 0;
+//     while (num > 0)
+//     {
+//         sum = sum + num%10;
+//         num = num/10;
+//     }
+//     return sum;
+// }
+
+// Console.Write("Введите число: ");
+// int number = Convert.ToInt32(Console.ReadLine());
+
+// Console.WriteLine($"Сумма цифр числа {number} равна {DigitsSum(number)}");
+
+// Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+
+int[] FillArray(int size)
 {
-    int sum = 0;
-    while (num > 0)
+    int[] arr = new int[size];
+    for (int i = 0; i < arr.Length; i++)
     {
-        sum = sum + num%10;
-        num = num/10;
+        Console.Write("Введите следующий элемент массива: ");
+        arr[i] = Convert.ToInt32(Console.ReadLine());
     }
-    return sum;
+    return arr;
 }
 
-Console.Write("Введите число: ");
-int number = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine($"Сумма цифр числа {number} равна {DigitsSum(number)}");
+Console.Write("Введите количество элементов массива: ");
+int size = Convert.ToInt32(Console.ReadLine());
+int[] array = FillArray(size);
+Console.WriteLine($"[{string.Join(" ", array)}]");
