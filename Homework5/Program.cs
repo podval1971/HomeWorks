@@ -29,29 +29,54 @@
 
 // Задача 36: Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
 
-int[] FillArrayRandom(int size)
+// int[] FillArrayRandom(int size)
+// {
+//     int[] arr = new int[size];
+//     Random rnd = new Random(); // создаем объект класса (переменную типа Random)
+//     for (int i = 0; i < arr.Length; i++)
+//     {
+//         arr[i] = rnd.Next(0, 10);
+//     }
+//     return arr;
+// }
+
+// Console.Write("Введите количество элементов массива: ");
+// int size = Convert.ToInt32(Console.ReadLine());
+// int[] array = FillArrayRandom(size);
+
+// int sum = 0;
+// for (int i = 1; i < array.Length; i=i+2)
+// {
+//     sum = sum + array[i];
+// }
+
+// Console.WriteLine($"Исходный массив: [{string.Join(" ", array)}]");
+// Console.WriteLine($"Сумма элементов на нечетных позициях: {sum}");
+
+// Задача 38: Задайте массив вещественных чисел(тип double). Найдите разницу между максимальным и минимальным элементов массива.
+
+double[] FillArrayRandom(int size)
 {
-    int[] arr = new int[size];
+    double[] arr = new double[size];
     Random rnd = new Random(); // создаем объект класса (переменную типа Random)
     for (int i = 0; i < arr.Length; i++)
     {
-        arr[i] = rnd.Next(0, 10);
+        arr[i] = rnd.Next(0, 10) + Math.Round(rnd.NextDouble(), 2);
     }
     return arr;
 }
 
 Console.Write("Введите количество элементов массива: ");
 int size = Convert.ToInt32(Console.ReadLine());
-int[] array = FillArrayRandom(size);
+double[] array = FillArrayRandom(size);
 
-int sum = 0;
-for (int i = 1; i < array.Length; i=i+2)
+double Max = array[0];
+double Min = array[0];
+for (int i = 0; i < array.Length; i++)
 {
-    sum = sum + array[i];
+   if(array[i] > Max) Max = array[i];
+   if(array[i] < Min) Min = array[i];   
 }
 
 Console.WriteLine($"Исходный массив: [{string.Join(" ", array)}]");
-Console.WriteLine($"Сумма элементов на нечетных позициях: {sum}");
-
-// Задача 38: Задайте массив вещественных чисел(тип double). Найдите разницу между максимальным и минимальным элементов массива.
-
+Console.WriteLine($"Разница между максимальным и минимальным: {Max - Min}");
