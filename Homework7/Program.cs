@@ -105,13 +105,13 @@ void PrintMatrix(int[,] array)
 
 void AverageValColumn(int[,] array)
 {
-    for (int i = 0; i < array.GetLength(1); i++)
+    for (int j = 0; j < array.GetLength(1); j++)
     {
         double sum = 0;
         double num = array.GetLength(0);
-        for (int j = 0; j < array.GetLength(0); j++)
+        for (int i = 0; i < array.GetLength(0); i++)
         {
-           sum += array[j,i];
+           sum += array[i,j];
         }
         double average = Math.Round(sum/num, 2);
         Console.Write($"{average} ");
