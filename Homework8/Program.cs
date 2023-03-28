@@ -159,69 +159,104 @@
 // PrintTreeDim(matrix);
 
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
-int[,] FillMatrixSpiral(int row, int column)
+// int[,] FillMatrixSpiral(int row, int column)
+// {
+//     int[,] arr = new int[row,column];
+//     int index = 1;
+//     for (int j = 0; j < arr.GetLength(1); j++) // заполняем периметр, движемся вправо
+//     {
+//         arr[0,j] = index;
+//         index++;
+//     }
+//     for (int i = 1; i < arr.GetLength(0); i++) // движемся вниз
+//     {
+//         arr[i,arr.GetLength(1)-1] = index;
+//         index++;
+//     }
+//     for (int j = arr.GetLength(1)-2; j >= 0; j--) // движемся влево
+//     {
+//         arr[arr.GetLength(0)-1,j] = index;
+//         index++;
+//     }
+//     for (int i = arr.GetLength(0)-2; i > 0; i--) // движемся вверх
+//     {
+//         arr[i,0] = index;
+//         index++;
+//     }
+
+//     int x = 1; // заполняем серединку, координаты первой ячейки
+//     int y = 1;
+//     while (index < row * column)
+//     {
+//         while (arr[x,y+1] == 0) // движемся вправо
+//         {
+//             arr[x,y] = index;
+//             index++;
+//             y++;
+//         }
+//         while (arr[x+1,y] == 0) // движемся вниз
+//         {
+//             arr[x,y] = index;
+//             index++;
+//             x++;
+//         }
+//         while (arr[x,y-1] == 0) // движемся влево
+//         {
+//             arr[x,y] = index;
+//             index++;
+//             y--;
+//         }
+//         while (arr[x-1,y] == 0) // движемся вверх
+//         {
+//             arr[x,y] = index;
+//             index++;
+//             x--;
+//         }
+//     }
+    
+//     for (int i = 0; i < arr.GetLength(0); i++) // заполняем самый центр
+//     {
+//         for (int j = 0; j < arr.GetLength(1); j++)
+//         {
+//             if(arr[i,j] == 0) arr[i,j] = index;
+//         }
+//     }
+
+//     return arr;
+// }
+
+// void PrintMatrix(int[,] array)
+// {
+//     for (int i = 0; i < array.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < array.GetLength(1); j++)
+//         {
+//             Console.Write($"{array[i,j]} \t");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// Console.Write("Введите количество строк массива: ");
+// int row = Convert.ToInt32(Console.ReadLine());
+// Console.Write("Введите количество столбцов массива: ");
+// int column = Convert.ToInt32(Console.ReadLine());
+// int[,] matrix = FillMatrixSpiral(row,column);
+// PrintMatrix(matrix);
+
+// Задача 59: Задайте двумерный массив из целых чисел. 
+//Напишите программу, которая удалит строку и столбец, на пересечении которых расположен наименьший элемент массива.
+int[,] FillMatrixRandom(int row, int column)
 {
     int[,] arr = new int[row,column];
-    int index = 1;
-    for (int j = 0; j < arr.GetLength(1); j++) // заполняем периметр, движемся вправо
-    {
-        arr[0,j] = index;
-        index++;
-    }
-    for (int i = 1; i < arr.GetLength(0); i++) // движемся вниз
-    {
-        arr[i,arr.GetLength(1)-1] = index;
-        index++;
-    }
-    for (int j = arr.GetLength(1)-2; j >= 0; j--) // движемся влево
-    {
-        arr[arr.GetLength(0)-1,j] = index;
-        index++;
-    }
-    for (int i = arr.GetLength(0)-2; i > 0; i--) // движемся вверх
-    {
-        arr[i,0] = index;
-        index++;
-    }
-
-    int x = 1; // заполняем серединку, координаты первой ячейки
-    int y = 1;
-    while (index < row * column)
-    {
-        while (arr[x,y+1] == 0) // движемся вправо
-        {
-            arr[x,y] = index;
-            index++;
-            y++;
-        }
-        while (arr[x+1,y] == 0) // движемся вниз
-        {
-            arr[x,y] = index;
-            index++;
-            x++;
-        }
-        while (arr[x,y-1] == 0) // движемся влево
-        {
-            arr[x,y] = index;
-            index++;
-            y--;
-        }
-        while (arr[x-1,y] == 0) // движемся вверх
-        {
-            arr[x,y] = index;
-            index++;
-            x--;
-        }
-    }
-    
-    for (int i = 0; i < arr.GetLength(0); i++) // заполняем самый центр
+    Random rnd = new Random(); // создаем объект класса (переменную типа Random)
+    for (int i = 0; i < arr.GetLength(0); i++)
     {
         for (int j = 0; j < arr.GetLength(1); j++)
         {
-            if(arr[i,j] == 0) arr[i,j] = index;
+            arr[i,j] = rnd.Next(0, 10);
         }
     }
-
     return arr;
 }
 
@@ -237,11 +272,63 @@ void PrintMatrix(int[,] array)
     }
 }
 
+int[,] DeleteRowColumn(int[,] arr)
+{
+    int[,] arrNew = new int[arr.GetLength(0)-1,arr.GetLength(1)-1];
+    int min = arr[0,0];
+    int xmin = 0;
+    int ymin = 0;
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+           if (arr[i,j] < min)
+           {
+                min = arr[i,j];
+                xmin = i;
+                ymin = j;
+           }
+        }
+    }
+    Console.WriteLine($"Минимальный элемент {arr[xmin,ymin]} [{xmin},{ymin}]");
+
+    for (int i = 0; i < xmin; i++)  // 1 четверть
+    {
+        for (int j = 0; j < ymin; j++)
+        {
+            arrNew[i,j] = arr[i,j];
+        }
+    }
+    for (int i = xmin; i < arr.GetLength(0)-1; i++)  // 2 четверть
+    {
+        for (int j = 0; j < ymin; j++)
+        {
+            arrNew[i,j] = arr[i+1,j];
+        }
+    }
+    for (int i = 0; i < xmin; i++)  // 3 четверть
+    {
+        for (int j = ymin; j < arr.GetLength(1)-1; j++)
+        {
+            arrNew[i,j] = arr[i,j+1];
+        }
+    }
+    for (int i = xmin; i < arr.GetLength(0)-1; i++)  // 4 четверть
+    {
+        for (int j = ymin; j < arr.GetLength(1)-1; j++)
+        {
+            arrNew[i,j] = arr[i+1,j+1];
+        }
+    }
+    return arrNew;
+}
+
 Console.Write("Введите количество строк массива: ");
 int row = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите количество столбцов массива: ");
 int column = Convert.ToInt32(Console.ReadLine());
-int[,] matrix = FillMatrixSpiral(row,column);
+int[,] matrix = FillMatrixRandom(row,column);
 PrintMatrix(matrix);
-
-// 
+int[,] matrixNew = DeleteRowColumn(matrix);
+Console.WriteLine();
+PrintMatrix(matrixNew);
