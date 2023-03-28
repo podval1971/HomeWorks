@@ -212,14 +212,16 @@ int[,] FillMatrixSpiral(int row, int column)
             index++;
             x--;
         }
-        for (int i = 0; i < arr.GetLength(0); i++) // заполняем самый центр
+    }
+    
+    for (int i = 0; i < arr.GetLength(0); i++) // заполняем самый центр
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
         {
-            for (int j = 0; j < arr.GetLength(1); j++)
-            {
-                if(arr[i,j] ==0) arr[i,j] = index;
-            }
+            if(arr[i,j] == 0) arr[i,j] = index;
         }
     }
+
     return arr;
 }
 
